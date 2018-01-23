@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <can-import from="simple-kanban/styles.less" />
+    <can-import from="simple-kanban/app" export-as="viewModel" />
+
+    <h1>{{message}}</h1>
+
+    {{#switch env.NODE_ENV}}
+      {{#case "production"}}
+        <script src="{{joinBase 'steal.production.js'}}"></script>
+      {{/case}}
+      {{#default}}
+        <script src="/node_modules/steal/steal.js"></script>
+      {{/default}}
+    {{/switch}}
+  </body>
+</html>
