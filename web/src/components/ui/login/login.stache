@@ -1,0 +1,11 @@
+<form action="" method="POST" role="form">
+    <div class="form-group">
+        <input type="text" class="form-control" id="" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+        <input type="password" name="" id="" class="form-control" placeholder="Password">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

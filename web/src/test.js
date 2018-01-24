@@ -3,6 +3,8 @@ import QUnit from 'steal-qunit';
 
 import 'simple-kanban/models/test';
 
+import 'simple-kanban/components/ui/login/login-test';
+
 F.attach(QUnit);
 
 QUnit.module('simple-kanban functional smoke test', {
