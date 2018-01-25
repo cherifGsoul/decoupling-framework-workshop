@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `project`.
+ * Handles the creation of table `board`.
  */
-class m180116_230657_create_project_table extends Migration
+class m180125_091354_create_board_table extends Migration
 {
     /**
      * @inheritdoc
@@ -17,10 +17,10 @@ class m180116_230657_create_project_table extends Migration
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-        $this->createTable('{{%project}}', [
+        $this->createTable('{{%board}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
-            'description' => $this->text(),
+            'title' => $this->string()->notNull(),
+            'slug' => $this->string()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull()
         ],$tableOptions);
@@ -31,6 +31,6 @@ class m180116_230657_create_project_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('{{%project}}');
+        $this->dropTable('{{%board}}');
     }
 }

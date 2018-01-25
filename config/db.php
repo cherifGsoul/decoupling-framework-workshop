@@ -2,10 +2,11 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=decouple_ws',
+    'dsn' => 'mysql:host=localhost;dbname=simple_kanban',
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
+    'tablePrefix' => 'kbn_'
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,
