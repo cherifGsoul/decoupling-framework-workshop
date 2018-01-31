@@ -12,8 +12,11 @@ class m180125_154025_create_card_table extends Migration
      */
     public function up()
     {
-        $this->createTable('card', [
+        $this->createTable('{{%card}}', [
             'id' => $this->primaryKey(),
+            'description' => $this->string(),
+            'due_date' => $this->integer(),
+            
         ]);
     }
 
@@ -22,6 +25,6 @@ class m180125_154025_create_card_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('card');
+        $this->dropTable('{{%card}}');
     }
 }

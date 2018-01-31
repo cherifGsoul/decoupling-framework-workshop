@@ -2,6 +2,7 @@
 
 namespace app\commands;
 
+use Yii;
 use yii\console\Controller;
 use League\FactoryMuffin\Faker\Facade as Faker;
 use League\FactoryMuffin\FactoryMuffin;
@@ -28,13 +29,8 @@ class UserController extends Controller
 
         return $this->fm->define(User::className())->setDefinitions([
             'username' => Faker::username(),            
-            //'auth_key' => $this->string(32)->notNull(),
-            'password_hash' => Faker::password(),
-            //'password_reset_token' => $this->string()->unique(),
-            'email' => Faker::email(),
-            //'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            //'created_at' => $this->integer()->notNull(),
-            //'updated_at' => $this->integer()->notNull(),
+            'password_hash' => Yii::$app->security->generatePasswordHash('azerty'),
+            'email' => Faker::email()
         ]);
     }
 }
