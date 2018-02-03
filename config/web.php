@@ -6,15 +6,24 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'layout' => 'spa',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\Module'
+        ]
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'aM4mvB1538IHLGMnBs7sdDWmmKg01WT2',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -43,14 +52,23 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'DELETE api/sessions' => 'api/session/delete',
+                [
+                    'class' => 'yii\rest\UrlRule', 
+                    'controller' => ['api/board', 'api/column', 'api/card', 'api/user'],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule', 
+                    'controller' => ['api/session'],
+                    'except' => ['delete']
+                ]
             ],
-        ],
-        */
+        ]
     ],
     'params' => $params,
 ];

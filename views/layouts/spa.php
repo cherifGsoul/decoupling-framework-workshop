@@ -7,6 +7,6 @@
   <title>Document</title>
 </head>
 <body>
-<script src="dist/steal.production.js"></script>
+<script src="node_modules/steal/steal.js"></script>
 </body>
 </html>

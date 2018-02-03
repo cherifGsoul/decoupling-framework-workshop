@@ -1,0 +1,10 @@
+
+ <form class="form-signin" on:submit="scope.root.createSession(scope.event)">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input value:bind="scope.root.session.user.username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input value:bind="scope.root.session.user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        
+        <button on:click="scope.root.createSession(scope.event)" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>

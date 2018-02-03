@@ -5,6 +5,10 @@ import 'simple-kanban/models/test';
 
 import 'simple-kanban/components/ui/login/login-test';
 
+import 'simple-kanban/components/user/login/login-test';
+
+import 'simple-kanban/components/board/list/list-test';
+
 F.attach(QUnit);
 
 QUnit.module('simple-kanban functional smoke test', {

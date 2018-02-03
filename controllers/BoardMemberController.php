@@ -3,21 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Board;
+use app\models\BoardMember;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Column;
-use app\models\BoardMember;
-use app\models\User;
-use app\models\AddBoardMemberForm;
-
 
 /**
- * BoardController implements the CRUD actions for Board model.
+ * BoardMemberController implements the CRUD actions for BoardMember model.
  */
-class BoardController extends Controller
+class BoardMemberController extends Controller
 {
     /**
      * @inheritdoc
@@ -35,13 +30,13 @@ class BoardController extends Controller
     }
 
     /**
-     * Lists all Board models.
+     * Lists all BoardMember models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Board::find(),
+            'query' => BoardMember::find(),
         ]);
 
         return $this->render('index', [
@@ -50,43 +45,31 @@ class BoardController extends Controller
     }
 
     /**
-     * Displays a single Board model.
-     * @param integer $id
+     * Displays a single BoardMember model.
+     * @param integer $board_id
+     * @param integer $member_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($board_id, $member_id)
     {
-        $columnsDataProvider =new ActiveDataProvider([
-            'query' => Column::find()->where([
-                'board_id' => $id
-            ])
-        ]);
-
-        $membersDataProvider = new ActiveDataProvider([
-            'query' => BoardMember::find()->where([
-                'board_id' => $id
-            ])
-        ]);
-            
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'columnsDataProvider' => $columnsDataProvider,
-            'membersDataProvider' => $membersDataProvider
+            'model' => $this->findModel($board_id, $member_id),
         ]);
     }
 
     /**
-     * Creates a new Board model.
+     * Creates a new BoardMember model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($boardId)
     {
-        $model = new Board();
+        $model = new BoardMember();
+        $model->board_id = $boardId;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['board/view', 'id' => $model->board_id]);
         }
 
         return $this->render('create', [
@@ -95,18 +78,19 @@ class BoardController extends Controller
     }
 
     /**
-     * Updates an existing Board model.
+     * Updates an existing BoardMember model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param integer $board_id
+     * @param integer $member_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($board_id, $member_id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($board_id, $member_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'board_id' => $model->board_id, 'member_id' => $model->member_id]);
         }
 
         return $this->render('update', [
@@ -115,29 +99,31 @@ class BoardController extends Controller
     }
 
     /**
-     * Deletes an existing Board model.
+     * Deletes an existing BoardMember model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param integer $board_id
+     * @param integer $member_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($board_id, $member_id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($board_id, $member_id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Board model based on its primary key value.
+     * Finds the BoardMember model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Board the loaded model
+     * @param integer $board_id
+     * @param integer $member_id
+     * @return BoardMember the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($board_id, $member_id)
     {
-        if (($model = Board::findOne($id)) !== null) {
+        if (($model = BoardMember::findOne(['board_id' => $board_id, 'member_id' => $member_id])) !== null) {
             return $model;
         }
 

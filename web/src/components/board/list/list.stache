@@ -1,0 +1,9 @@
+{{#boardsPromise.isPending}}
+	loading
+{{/boardsPromise.isPending}}
+
+{{#if(boardsPromise.isResolved)}}
+	{{#each boardsPromise.value}}
+		{{title}}
+	{{/each}}
+{{/if}}

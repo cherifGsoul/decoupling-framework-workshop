@@ -3,18 +3,43 @@
     <title>{{title}}</title>
   </head>
   <body>
+    <can-import from="bootstrap/dist/css/bootstrap.css" />
     <can-import from="simple-kanban/styles.less" />
     <can-import from="simple-kanban/app" export-as="viewModel" />
-
-    <h1>{{message}}</h1>
-
-    {{#switch env.NODE_ENV}}
+    {{#if(session)}}
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Simple Kanban</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" on:click="logout(scope.event)">Logout</a></li>
+            </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+        <main id="content">
+          <can-import from="simple-kanban/components/board/list/list" />
+          <ui-board-list></ui-board-list>
+        </main>
+      {{else}}
+        <can-import from="~/components/user/login/login" />
+        <ui-login app:from="." />
+      {{/if}}
+      {{#switch env.NODE_ENV}}
       {{#case "production"}}
         <script src="{{joinBase 'steal.production.js'}}"></script>
       {{/case}}
       {{#default}}
         <script src="/node_modules/steal/steal.js"></script>
       {{/default}}
-    {{/switch}}
-  </body>
-</html>
+      {{/switch}}
+    </body>
+  </html>
