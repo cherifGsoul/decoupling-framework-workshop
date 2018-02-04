@@ -20,4 +20,11 @@ class Board extends BaseBoard
     {
         return $this->hasMany(Column::className(), ['board_id' => 'id']);
     }
+
+    public function extraFields()
+    {
+        return [
+            'columns'
+        ];
+    }
 }

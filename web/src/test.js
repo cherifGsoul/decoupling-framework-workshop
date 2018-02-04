@@ -9,6 +9,8 @@ import 'simple-kanban/components/user/login/login-test';
 
 import 'simple-kanban/components/board/list/list-test';
 
+import 'simple-kanban/components/board/details/details-test';
+
 F.attach(QUnit);
 
 QUnit.module('simple-kanban functional smoke test', {

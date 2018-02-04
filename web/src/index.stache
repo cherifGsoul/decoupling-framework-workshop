@@ -6,6 +6,7 @@
     <can-import from="bootstrap/dist/css/bootstrap.css" />
     <can-import from="simple-kanban/styles.less" />
     <can-import from="simple-kanban/app" export-as="viewModel" />
+
     {{#if(session)}}
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -26,8 +27,18 @@
           </div>
         </nav>
         <main id="content">
-          <can-import from="simple-kanban/components/board/list/list" />
-          <ui-board-list app:from="."></ui-board-list>
+          <div class="container-fluid">
+          {{#if boardId}}
+            <can-import from="simple-kanban/components/board/details/details" />
+            <ui-board-details app:from="." boardId:from="boardId"></ui-board-details>
+          {{/if}}
+          {{#switch page}}
+            {{#case "boards"}}
+              <can-import from="simple-kanban/components/board/list/list" />
+              <ui-board-list app:from="."></ui-board-list>
+            {{/case}}
+          {{/switch}}
+          </div>
         </main>
       {{else}}
         <can-import from="~/components/user/login/login" />

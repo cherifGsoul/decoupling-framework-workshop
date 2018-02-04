@@ -5,13 +5,13 @@ import Session from './models/session';
 import Board from './models/board';
 import 'can-stache-route-helpers';
 
-//import 'can-route-pushstate';
-
-const AppViewModel = DefineMap.extend({
+const AppViewModel = DefineMap.extend('App', {
 	title: {
 		default: 'Simple Kanban',
 		serialize: false
 	},
+	boardSlug: 'string',
+	boardId: 'number',
 	page: 'string',
 	session: {
 		serialize: false,
@@ -34,11 +34,10 @@ const AppViewModel = DefineMap.extend({
 		this.sessionPromise = sessionPromise;
 		this.session = null;
 	},
-	boardSlug: 'string',
-	boardId: 'number'
+	
 });
 
-route.register('boards/{boardId}/{boardSlug}');
-route.register('{page}', {page: 'boards'});
+route('boards/{boardId}/{boardSlug}');
+route('{page}', {page: 'boards'});
 
 export default AppViewModel;

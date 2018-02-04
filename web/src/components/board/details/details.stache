@@ -1,0 +1,9 @@
+{{#if boardPromise.isPending}}
+	loading
+{{/if}}
+{{#if boardPromise.isResolved}}
+	{{board.title}}
+	{{#each(board.columns)}}
+		{{this.title}}
+	{{/each}}
+{{/if}}
