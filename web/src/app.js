@@ -1,6 +1,9 @@
 import DefineMap from 'can-define/map/';
 import route from 'can-route';
+import "can-route-pushstate";
 import Session from './models/session';
+import Board from './models/board';
+import 'can-stache-route-helpers';
 
 //import 'can-route-pushstate';
 
@@ -9,6 +12,7 @@ const AppViewModel = DefineMap.extend({
 		default: 'Simple Kanban',
 		serialize: false
 	},
+	page: 'string',
 	session: {
 		serialize: false,
 		default: function() {
@@ -29,7 +33,12 @@ const AppViewModel = DefineMap.extend({
 		var sessionPromise = this.session.destroy();
 		this.sessionPromise = sessionPromise;
 		this.session = null;
-	}
+	},
+	boardSlug: 'string',
+	boardId: 'number'
 });
+
+route.register('boards/{boardId}/{boardSlug}');
+route.register('{page}', {page: 'boards'});
 
 export default AppViewModel;

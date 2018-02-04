@@ -3,7 +3,13 @@
 {{/boardsPromise.isPending}}
 
 {{#if(boardsPromise.isResolved)}}
-	{{#each boardsPromise.value}}
-		{{title}}
+	{{#each(boardsPromise.value)}}
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<a href="{{routeUrl(boardId=id boardSlug=slug)}}">{{title}}</a>
+				</div>
+			</div>
+		</div>
 	{{/each}}
 {{/if}}

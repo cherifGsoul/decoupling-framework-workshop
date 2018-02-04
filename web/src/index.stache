@@ -27,7 +27,7 @@
         </nav>
         <main id="content">
           <can-import from="simple-kanban/components/board/list/list" />
-          <ui-board-list></ui-board-list>
+          <ui-board-list app:from="."></ui-board-list>
         </main>
       {{else}}
         <can-import from="~/components/user/login/login" />

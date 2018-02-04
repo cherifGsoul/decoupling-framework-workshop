@@ -5,11 +5,10 @@ import view from './list.stache';
 import Board from 'simple-kanban/models/board';
 
 export const ViewModel = DefineMap.extend({
+  app: "any",
   boardsPromise: {
   	default() {
-  		return Board.getList({}).then(data => {
-  			console.log(data)
-  		});
+  		return Board.getList({});
   	}
   }
 });
