@@ -1,0 +1,5 @@
+1- create a custom namespace
+  update composer.json
+  run ```composer dumpautoload"```
+  if you are using Yii2 dont forget to add the alias
+2- Create the folder depending on the namespace

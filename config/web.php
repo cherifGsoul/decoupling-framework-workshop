@@ -6,15 +6,19 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'layout' => 'spa',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        'SimpleKanban' => dirname(__DIR__) . '/src/SimpleKanban',
+        '@kanban' => dirname(__DIR__) . '/src/SimpleKanban/Module/Kanban'
     ],
     'modules' => [
         'api' => [
             'class' => 'app\modules\api\Module'
+        ],
+        'kanban' => [
+            'class' => 'SimpleKanban\Module\Kanban\Module',
         ]
     ],
     'components' => [
