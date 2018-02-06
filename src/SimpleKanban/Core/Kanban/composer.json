@@ -9,7 +9,11 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {},
+    "require": {
+        "php": ">=5.4",
+        "ramsey/uuid": "^3.4",
+        "doctrine/collections": "^1.3"
+    },
     "autoload": {
         "psr-4": {
             "SimpleKanban\\Core\\Kanban\\": "."
@@ -17,5 +21,8 @@
     },
     "autoload-dev": {
         "psr-4": { "SimpleKanban\\Core\\Kanban\\spec\\": "spec/" }
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.3"
     }
 }

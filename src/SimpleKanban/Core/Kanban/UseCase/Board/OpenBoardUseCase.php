@@ -4,6 +4,7 @@ namespace SimpleKanban\Core\Kanban\UseCase\Board;
 
 use SimpleKanban\Core\Kanban\Model\Board\Board;
 use SimpleKanban\Core\Kanban\Model\Board\BoardGateway;
+use SimpleKanban\Core\Kanban\Model\Board\BoardTitleIsUniqueSpecification;
 use SimpleKanban\Common\UseCase\UseCase;
 
 class OpenBoardUseCase
@@ -29,10 +30,14 @@ class OpenBoardUseCase
   public function handle($request)
   {
     $board = Board::open(
+      $this->boardGateway->nextIdentity(),
       $request->getTitle()
     );
+    $titleIsUniqueSpecification = new BoardTitleIsUniqueSpecification($this->boardGateway);
 
+    if (false == $titleIsUniqueSpecification->isSatisfiedBy($board)){
+      throw new Exception('A board with the same already exist');  
+    }
     $this->boardGateway->add($board);
-
   }
 }

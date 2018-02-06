@@ -3,26 +3,26 @@
 namespace SimpleKanban\Core\Kanban\Model\Board;
 
 use SimpleKanban\Core\Kanban\Model\Column\Column;
+USE Doctrine\Common\Collections\ArrayCollection;
 
 class Board
 {
-    const STATUS_OPEN = 'open';
-    const STATUS_CLOSED = 'closed';
-
+    private $id;
     private $title;
     private $columns;
     private $status;
 
-    public function __construct()
+    public function __construct(BoardId $id, $title)
     {
-        $board->setTitle($title);
-        $this->setStatus(self::STATUS_OPEN);
-        $this->columns = [];
+        $this->id = $id;
+        $this->setTitle($title);
+        $this->setStatus(BoardStatus::OPEN());
+        $this->columns = new ArrayCollection;
     }
 
-    public static function open()
+    public static function open(BoardId $id, $title)
     {
-        $board = new Board();
+        $board = new Board($id, $title);
         return $board;
     }
 
@@ -33,22 +33,17 @@ class Board
 
     public function addColumn(Column $column)
     {
-        $this->columns[] = $column;
+        $this->columns->add($column);
     }
 
     public function removeColumn(Column $column)
     {
-        $key = array_search($column, $this->columns, true);
-        if ($key === false) {
-            return false;
-        }
-        unset($this->columns[$key]);
-        return true;
+        $this->columns->removeElement($column);
     }
 
     public function isOpen()
     {
-        return $this->status == self::STATUS_OPEN;
+        return $this->status->equals(BoardStatus::OPEN());
     }
 
     public function changeTitle($title)
@@ -58,7 +53,12 @@ class Board
 
     public function close()
     {
-        $this->setStatus(self::STATUS_CLOSED);
+        $this->setStatus(BoardStatus::CLOSED());
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
