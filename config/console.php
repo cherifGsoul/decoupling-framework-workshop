@@ -8,6 +8,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
+    'controllerMap' => [
+        'fixture' => [
+            'class' => 'yii\faker\FixtureController',
+            'fixtureDataPath' => '@tests/fixtures',
+            'templatePath' => '@tests/fixtures/templates',
+            'namespace' => 'tests\fixtures',
+        ],
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

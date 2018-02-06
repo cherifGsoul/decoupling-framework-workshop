@@ -11,8 +11,17 @@ return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        'test'   => dirname(__DIR__) . '/tests'
     ],  
     'language' => 'en-US',
+    'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\Module'
+        ],
+        'kanban' => [
+            'class' => 'SimpleKanban\Module\Kanban\Module',
+        ]
+    ],
     'components' => [
         'db' => $db,
         'mailer' => [
@@ -22,7 +31,20 @@ return [
             'basePath' => __DIR__ . '/../web/assets',
         ],
         'urlManager' => [
+            'enablePrettyUrl' => true,
             'showScriptName' => true,
+            'rules' => [
+                'DELETE api/sessions' => 'api/session/delete',
+                [
+                    'class' => 'yii\rest\UrlRule', 
+                    'controller' => ['api/board', 'api/column', 'api/card', 'api/user'],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule', 
+                    'controller' => ['api/session'],
+                    'except' => ['delete']
+                ]
+            ],
         ],
         'user' => [
             'identityClass' => 'app\models\User',
