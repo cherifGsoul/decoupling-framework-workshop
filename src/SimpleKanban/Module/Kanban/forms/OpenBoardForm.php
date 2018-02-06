@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleKanban\Module\kanban\actions\boards;
+namespace SimpleKanban\Module\Kanban\forms;
 
 use yii\base\Model;
 

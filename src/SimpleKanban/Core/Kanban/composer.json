@@ -1,0 +1,21 @@
+{
+    "name": "simplekanban/kanban",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Cherif BOUCHELAGHEM",
+            "email": "cherif.bouchelaghem@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "SimpleKanban\\Core\\Kanban\\": "."
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { "SimpleKanban\\Core\\Kanban\\spec\\": "spec/" }
+    }
+}
