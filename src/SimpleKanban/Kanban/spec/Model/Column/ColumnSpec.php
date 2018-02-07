@@ -3,6 +3,7 @@
 namespace  spec\SimpleKanban\Kanban\Model\Column;
 
 use SimpleKanban\Kanban\Model\Column\Column;
+use SimpleKanban\Kanban\Model\Column\ColumnId;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -10,11 +11,11 @@ class ColumnSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('a column');
+        $this->beConstructedWith(ColumnId::generate(), 'a column');
     }
     function it_has_a_title()
     {
-        $this->beConstructedWith('a title');
+        $this->beConstructedWith(ColumnId::generate(),'a title');
         $this->getTitle()->shouldReturn('a title');
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleKanban;
+//namespace SimpleKanban;
 
 use Yii;
 use SimpleKanban\Kanban\Model\Board\BoardGateway;
