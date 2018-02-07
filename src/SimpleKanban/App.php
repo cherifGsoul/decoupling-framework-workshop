@@ -3,9 +3,9 @@
 namespace SimpleKanban;
 
 use Yii;
-use SimpleKanban\Core\Kanban\Model\Board\BoardGateway;
+use SimpleKanban\Kanban\Model\Board\BoardGateway;
 use SimpleKanban\Module\Kanban\persistence\gateway\ActiveBoardGateway;
-use SimpleKanban\Core\Kanban\UseCase\Board\OpenBoardUseCase;
+use SimpleKanban\Kanban\UseCase\Board\OpenBoardUseCase;
 
 class App
 {

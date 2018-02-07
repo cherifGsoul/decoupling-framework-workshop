@@ -1,0 +1,5 @@
+suites:
+  main:
+    namespace: SimpleKanban\Kanban
+    psr4_prefix: SimpleKanban\Kanban
+    src_path: .
