@@ -35,7 +35,7 @@ class OpenBoardUseCase
     );
     $titleIsUniqueSpecification = new BoardTitleIsUniqueSpecification($this->boardGateway);
 
-    if (false == $titleIsUniqueSpecification->isSatisfiedBy($board)){
+    if (false == $titleIsUniqueSpecification->isSatisfiedBy($board)) {
       throw new Exception('A board with the same already exist');  
     }
     $this->boardGateway->add($board);

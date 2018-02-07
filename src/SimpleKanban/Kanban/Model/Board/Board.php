@@ -38,7 +38,7 @@ class Board
 
     public function removeColumn(Column $column)
     {
-        $this->columns->removeElement($column);
+        return $this->columns->removeElement($column);
     }
 
     public function isOpen()
