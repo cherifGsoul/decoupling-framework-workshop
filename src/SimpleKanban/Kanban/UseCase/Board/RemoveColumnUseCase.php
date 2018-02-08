@@ -3,8 +3,9 @@
 namespace SimpleKanban\Kanban\UseCase\Board;
 use SimpleKanban\Kanban\Model\Board\BoardGateway;
 use SimpleKanban\Kanban\Model\Column\ColumnGateway;
+use SimpleKanban\Common\UseCase\UseCase;
 
-class RemoveColumnUseCase
+class RemoveColumnUseCase implements UseCase
 {
     public function __construct(BoardGateway $boardGateway, ColumnGateway $columnGateway)
     {

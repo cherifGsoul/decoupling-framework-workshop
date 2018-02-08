@@ -69,5 +69,9 @@
         "psr-4": {
             "SimpleKanban\\": "src/SimpleKanban/"
         }
+    },
+    "replace": {
+        "simplekanban/common": "self.version",
+        "simplekanban/kanban": "self.version"
     }
 }

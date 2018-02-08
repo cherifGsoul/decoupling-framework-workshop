@@ -7,7 +7,7 @@ use SimpleKanban\Kanban\Model\Board\BoardGateway;
 use SimpleKanban\Kanban\Model\Board\BoardTitleIsUniqueSpecification;
 use SimpleKanban\Common\UseCase\UseCase;
 
-class OpenBoardUseCase
+class OpenBoardUseCase implements UseCase
 {
   private $boardGateway;
 
@@ -33,6 +33,7 @@ class OpenBoardUseCase
       $this->boardGateway->nextIdentity(),
       $request->getTitle()
     );
+    
     $titleIsUniqueSpecification = new BoardTitleIsUniqueSpecification($this->boardGateway);
 
     if (false == $titleIsUniqueSpecification->isSatisfiedBy($board)) {

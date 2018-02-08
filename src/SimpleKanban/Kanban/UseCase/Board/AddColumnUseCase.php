@@ -5,8 +5,9 @@ namespace SimpleKanban\Kanban\UseCase\Board;
 use SimpleKanban\Kanban\Model\Column\Column;
 use SimpleKanban\Kanban\Model\Board\BoardGateway;
 use SimpleKanban\Kanban\Model\Column\ColumnGateway;
+use SimpleKanban\Common\UseCase\UseCase;
 
-class AddColumnUseCase
+class AddColumnUseCase implements UseCase
 {
     private $boardGateway;
     private $columnGateway;

@@ -10,8 +10,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
-        'SimpleKanban' => dirname(__DIR__) . '/src/SimpleKanban',
-        '@kanban' => dirname(__DIR__) . '/src/SimpleKanban/Module/Kanban'
+        'SimpleKanban' => dirname(__DIR__) . '/src/SimpleKanban'
     ],
     'modules' => [
         'api' => [

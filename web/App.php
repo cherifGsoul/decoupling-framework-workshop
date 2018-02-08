@@ -2,7 +2,7 @@
 
 //namespace SimpleKanban;
 
-use Yii;
+//use Yii;
 use SimpleKanban\Kanban\Model\Board\BoardGateway;
 use SimpleKanban\Module\Kanban\persistence\gateway\ActiveBoardGateway;
 use SimpleKanban\Kanban\UseCase\Board\OpenBoardUseCase;

@@ -5,8 +5,9 @@ namespace SimpleKanban\Kanban\UseCase\Board;
 use SimpleKanban\Kanban\Model\Board\BoardGateway;
 use SimpleKanban\Kanban\Model\Board\Board;
 use SimpleKanban\Kanban\Model\Board\BoardId;
+use SimpleKanban\Common\UseCase\UseCase;
 
-class CloseBoardUseCase
+class CloseBoardUseCase implements UseCase
 {
 	private $boardGateway;
 

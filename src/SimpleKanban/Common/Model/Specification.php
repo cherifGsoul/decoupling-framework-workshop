@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleKanban\Kanban\Model\Board;
+namespace SimpleKanban\Common\Model;
 
 interface Specification
 {

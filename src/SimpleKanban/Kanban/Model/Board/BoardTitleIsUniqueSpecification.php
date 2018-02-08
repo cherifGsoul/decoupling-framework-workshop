@@ -2,15 +2,27 @@
 
 namespace SimpleKanban\Kanban\Model\Board;
 
+use SimpleKanban\Common\Model\Specification;
 
-class BoardTitleIsUniqueSpecification
+class BoardTitleIsUniqueSpecification implements Specification
 {
+	/**
+	 * Undocumented function
+	 *
+	 * @param BoardGateway $boardGateway
+	 */
 	public function __construct(BoardGateway $boardGateway)
 	{
 		$this->boardGateway = $boardGateway;
 	}
 
-	public function isSatisfiedBy(Board $board)
+	/**
+	 * Undocumented function
+	 *
+	 * @param Board $board
+	 * @return boolean
+	 */
+	public function isSatisfiedBy($board)
 	{
 		if ($this->boardGateway->forTitle($board->getTitle())) {
 			return false;
