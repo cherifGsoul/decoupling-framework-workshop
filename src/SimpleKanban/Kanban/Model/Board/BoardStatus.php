@@ -26,7 +26,7 @@ class BoardStatus
 	 *
 	 * @return void
 	 */
-	private function __construc() {}
+	private function __construct() {}
 
 	/**
 	 * Undocumented function
@@ -50,6 +50,14 @@ class BoardStatus
 		$status = new BoardStatus;
 		$status->setStatus(self::CLOSED);
 		return $status;	
+	}
+
+	public static function fromString($status)
+	{
+		
+		$boardStatus = new BoardStatus;
+		$boardStatus->setStatus($status);
+		return $boardStatus;
 	}
 
 	/**

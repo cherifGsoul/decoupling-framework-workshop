@@ -18,12 +18,14 @@ class CloseBoardUseCase implements UseCase
 
     public function handle($request)
     {
-    	$board = $this->boardGateway->forId($request->getBoardId());
+
+    	$board = $this->boardGateway->forId(BoardId::fromString($request->getBoardId()));
+        
     	if (!$board) {
     		throw new \Exception('The requested board does not exist');
     	}
 
     	$board->close();
-    	$this->boardGateway->add($board);
+    	$this->boardGateway->persist($board);
     }
 }

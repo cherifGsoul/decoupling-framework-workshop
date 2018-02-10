@@ -19,13 +19,13 @@ class AddColumnUseCaseSpec extends ObjectBehavior
     {
         $this->beConstructedWith($boardGateway, $columnGateway);
 
-        $board = new Board(BoardId::generate(), 'a board');
+        $board = new Board(BoardId::generate(), 'a board', 'a-board');
         $column = new Column(ColumnId::generate(), 'a title', $board->getId());
 
         $request->getBoardId()->willReturn($board->getId())->shouldBeCalled();
         $request->getColumnTitle()->willReturn($column->getTitle())->shouldBeCalled();
         $boardGateway->forId($board->getId())->willReturn($board)->shouldBeCalled();
-        $boardGateway->add($board)->shouldBeCalled();
+        $boardGateway->persist($board)->shouldBeCalled();
         $columnGateway->nextIdentity()->willReturn($column->getId())->shouldBeCalled();
         $this->handle($request);
     }

@@ -11,7 +11,8 @@ return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
-        'test'   => dirname(__DIR__) . '/tests'
+        'test'   => dirname(__DIR__) . '/tests',
+        'SimpleKanban' => dirname(__DIR__) . '/src/SimpleKanban'
     ],  
     'language' => 'en-US',
     'modules' => [
@@ -34,8 +35,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
+                'POST api/boards' => 'api/board/open',
                 'DELETE api/sessions' => 'api/session/delete',
-                [
+                
+                /*[
                     'class' => 'yii\rest\UrlRule', 
                     'controller' => ['api/board', 'api/column', 'api/card', 'api/user'],
                 ],
@@ -43,7 +46,7 @@ return [
                     'class' => 'yii\rest\UrlRule', 
                     'controller' => ['api/session'],
                     'except' => ['delete']
-                ]
+                ]*/
             ],
         ],
         'user' => [

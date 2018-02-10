@@ -19,14 +19,14 @@ class RemoveColumnUseCaseSpec extends ObjectBehavior
     {
         $this->beConstructedWith($boardGateway, $columnGateway);
         
-        $board = new Board(BoardId::generate(), 'a title');
+        $board = new Board(BoardId::generate(), 'a title', 'a-title');
         $column = new Column(ColumnId::generate(), 'a title', $board->getId());
 
         $request->getColumnId()->willReturn($column->getId())->shouldBeCalled();
         $request->getBoardId()->willReturn($board->getId())->shouldBeCalled();
         $columnGateway->forId($column->getId())->willReturn($column)->shouldBeCalled();
         $boardGateway->forId($board->getId())->willReturn($board)->shouldBeCalled();
-        $boardGateway->add($board)->shouldBeCalled();
+        $boardGateway->persist($board)->shouldBeCalled();
         
         $this->handle($request);
         

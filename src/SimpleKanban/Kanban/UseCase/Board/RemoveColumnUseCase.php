@@ -27,6 +27,6 @@ class RemoveColumnUseCase implements UseCase
         }
 
         $board->removeColumn($column);
-        $this->boardGateway->add($board);
+        $this->boardGateway->persist($board);
     }
 }

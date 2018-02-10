@@ -17,7 +17,7 @@ interface BoardGateway
    * @param Board $board
    * @return void
    */
-  public function add(Board $board);
+  public function persist(Board $board);
 
   /**
    * Undocumented function

@@ -60,7 +60,14 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                // board
+                'POST api/boards' => 'api/board/open',
+                'PUT api/boards/<id>/close' => 'api/board/close',
+                'POST api/boards/<id>/columns' => 'api/board/add-column',
+
                 'DELETE api/sessions' => 'api/session/delete',
+
+
                 [
                     'class' => 'yii\rest\UrlRule', 
                     'controller' => ['api/board', 'api/column', 'api/card', 'api/user'],

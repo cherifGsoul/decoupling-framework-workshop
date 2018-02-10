@@ -6,7 +6,7 @@ class CloseBoardRequest
 {
 	private $boardId;
 
-	public function __construc($boardId)
+	public function __construct($boardId)
 	{
 		$this->boardId = $boardId;
 	}

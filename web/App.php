@@ -4,7 +4,7 @@
 
 //use Yii;
 use SimpleKanban\Kanban\Model\Board\BoardGateway;
-use SimpleKanban\Module\Kanban\persistence\gateway\ActiveBoardGateway;
+use app\modules\kanban\persistence\gateway\ActiveBoardGateway;
 use SimpleKanban\Kanban\UseCase\Board\OpenBoardUseCase;
 
 class App
@@ -12,6 +12,8 @@ class App
   public static function bootstrap(array $config)
   {
     $container = Yii::$container;
+
+    var_dump(class_exists(ActiveBoardGateway::class));exit;
 
     $container->set(BoardGateway::class, function($container) {
       return new ActiveBoardGateway();

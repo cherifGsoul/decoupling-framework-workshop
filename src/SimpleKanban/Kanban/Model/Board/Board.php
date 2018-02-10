@@ -2,27 +2,35 @@
 
 namespace SimpleKanban\Kanban\Model\Board;
 
+use SimpleKanban\Kanban\Model\Column\ColumnId;
 use SimpleKanban\Kanban\Model\Column\Column;
-USE Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Board
 {
     private $id;
     private $title;
+    private $slug;
     private $columns;
     private $status;
 
-    public function __construct(BoardId $id, $title)
+    public function __construct(BoardId $id, $title, $slug, BoardStatus $status = null, array $columns = [])
     {
         $this->id = $id;
         $this->setTitle($title);
+        $this->setSlug($slug);
         $this->setStatus(BoardStatus::OPEN());
-        $this->columns = new ArrayCollection;
+        
+        if (isset($status)) {
+            $this->setStatus($status);
+        }
+
+        $this->columns = new ArrayCollection($columns);
     }
 
-    public static function open(BoardId $id, $title)
+    public static function open(BoardId $id, $title, $slug)
     {
-        $board = new Board($id, $title);
+        $board = new Board($id, $title, $slug);
         return $board;
     }
 
@@ -53,6 +61,10 @@ class Board
 
     public function close()
     {
+        
+        if (false == $this->isOpen()) {
+            throw new \Exception('The board is already closed');
+        }
         $this->setStatus(BoardStatus::CLOSED());
     }
 
@@ -67,6 +79,14 @@ class Board
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Get the value of slug
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -104,5 +124,11 @@ class Board
     private function setStatus($status)
     {
         $this->status = $status;
+    }
+
+
+    private function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

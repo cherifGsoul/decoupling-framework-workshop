@@ -15,10 +15,10 @@ class CloseBoardUseCaseSpec extends ObjectBehavior
     function it_handles_clase_board_use_case(BoardGateway $boardGateway, CloseBoardRequest $request)
     {
     	$this->beConstructedWith($boardGateway);
-        $board = Board::open(BoardId::generate(), 'a board');
+        $board = Board::open(BoardId::generate(), 'a board', 'a-board');
         $request->getBoardId()->willReturn($board->getId())->shouldBeCalled();
         $boardGateway->forId($board->getId())->willReturn($board)->shouldBeCalled();
-        $boardGateway->add($board)->shouldBeCalled();
+        $boardGateway->persist($board)->shouldBeCalled();
         $this->handle($request);
     }
 }
